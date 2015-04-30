@@ -5,10 +5,24 @@
  */
 package Comms;
 
+import java.io.IOException;
+
 /**
  *
  * @author Lloyd
  */
 public interface Comms {
     
+    /**
+     *
+     * @param message
+     * @return
+     */
+    public boolean sendMessage (String message) throws IOException;
+    
+    public String recieveMessage() throws IOException;
+    
+    public boolean close() throws IOException;
+    
+    public boolean connect() throws IOException;
 }
