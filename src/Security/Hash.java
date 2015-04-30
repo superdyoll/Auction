@@ -9,6 +9,12 @@ package Security;
  *
  * @author Lloyd
  */
-public class Hash {
+public interface Hash {
+    
+    public String getHashedRandomSalt();
+    
+    public String hash(String data);
+    
+    public String getHashedPassword(String password, String salt);
     
 }
