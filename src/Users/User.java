@@ -15,6 +15,16 @@ public class User {
     private String password;
     private String salt;
     private int personalID;
+    
+    
+    public User (String personalName, String familyName,
+            String password, String salt, int personalID){
+        this.personalName = personalName;
+        this.familyName = familyName;
+        this.password = password;
+        this.salt = salt;
+        this.personalID = personalID;
+    }
 
     /**
      * @return the familyName
