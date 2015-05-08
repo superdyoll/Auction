@@ -35,7 +35,7 @@ public class SocketComms implements Comms {
     }
 
     @Override
-    public boolean sendMessage(String message) throws IOException {
+    public boolean sendMessage(Message message) throws IOException {
 
         /**
          * Instantiate a BufferedOutputStream object

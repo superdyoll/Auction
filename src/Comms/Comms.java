@@ -18,9 +18,9 @@ public interface Comms {
      * @param message
      * @return
      */
-    public boolean sendMessage (String message) throws IOException;
+    public boolean sendMessage (Message messageToSend) throws IOException;
     
-    public String recieveMessage() throws IOException;
+    public Object recieveMessage() throws IOException;
     
     public boolean close() throws IOException;
     
