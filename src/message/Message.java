@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Comms;
+package message;
 
 import java.util.ArrayList;
 
@@ -11,24 +11,16 @@ import java.util.ArrayList;
  *
  * @author Lloyd
  */
-public class Message<E> implements java.io.Serializable{
+public abstract class Message<E> implements java.io.Serializable{
     //TODO implement encryption
     //TODO make message abstract and make different message types
     
     private int messageID;
-    private ArrayList<E> objects;
-
-    public Message(int messageID, ArrayList<E> objects) {
-        this.messageID = messageID;
-        this.objects = objects;
-    }
 
     public Message(int messageID) {
-        this(messageID, new ArrayList<E>());
-        
+        this.messageID = messageID;
     }
-    
-    
+ 
 
     /**
      * @return the messageID
@@ -44,19 +36,10 @@ public class Message<E> implements java.io.Serializable{
         this.messageID = messageID;
     }
 
-    /**
-     * @return the objects
-     */
-    public ArrayList getObjects() {
-        return objects;
-    }
-
-    /**
-     * @param objects the objects to set
-     */
-    public void setObjects(ArrayList<E> objects) {
-        this.objects = objects;
-    }
+    public abstract Object getMessage();
     
+    public abstract void setMessage(Object message) throws Exception;
     
+    @Override
+    public abstract String toString();
 }

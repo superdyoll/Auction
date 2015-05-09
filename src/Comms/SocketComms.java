@@ -5,15 +5,21 @@
  */
 package Comms;
 
+import message.Message;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import message.StringMessage;
 
 /**
  *
@@ -24,14 +30,22 @@ public class SocketComms implements Comms {
     protected int port;
     protected String host;
     String TimeStamp;
-    static InetAddress address;
+    static InetAddress address = null;
     static Socket connection;
-    BufferedInputStream bis = null;
-    BufferedOutputStream bos;
+
+    ObjectOutputStream oos;
+
+    ObjectInputStream ois = null;
 
     public SocketComms(int port, String host) {
         this.port = port;
         this.host = host;
+    }
+
+    public SocketComms(Socket connection) {
+        this.connection = connection;
+        this.port = connection.getPort();
+        this.address = connection.getInetAddress();
     }
 
     @Override
@@ -40,53 +54,47 @@ public class SocketComms implements Comms {
         /**
          * Instantiate a BufferedOutputStream object
          */
-        bos = new BufferedOutputStream(connection.
-                getOutputStream());
+        
+        OutputStream bos = new BufferedOutputStream(connection.getOutputStream());
+        
+        oos = new ObjectOutputStream(bos);
 
         //System.out.println("Buffered object set up");
-        /**
-         * Instantiate an OutputStreamWriter object with the optional character
-         * encoding.
-         */
-        OutputStreamWriter osw = new OutputStreamWriter(bos, "US-ASCII");
 
-        //System.out.println("osw set up");
         /**
          * Write across the socket connection and flush the buffer
          */
-        osw.write(message);
+        oos.writeObject(message);
         //System.out.println("written");
-        osw.flush();
+        oos.flush();
         //System.out.println("flushed");
         return true;
     }
+    
+    @Override
+    public boolean sendMessage(String message) throws IOException {
+        StringMessage stringMessage = new StringMessage(message);
+        return sendMessage(stringMessage);
+    }
 
     @Override
-    public String recieveMessage() throws IOException {
-        StringBuffer instr = new StringBuffer();
+    public Message recieveMessage() throws IOException {
+        Message message = null;
         /**
-         * Instantiate a BufferedInputStream object for reading /** Instantiate
-         * a BufferedInputStream object for reading incoming socket streams.
+         * Instantiate a BufferedInputStream object for reading incoming socket
+         * streams.
          */
-        bis = new BufferedInputStream(connection.
-                getInputStream());
-        /**
-         * Read the socket's InputStream and append to a StringBuffer
-         */
-        /**
-         * Instantiate an InputStreamReader with the optional character
-         * encoding.
-         */
-        InputStreamReader isr = new InputStreamReader(bis, "US-ASCII");
-        /**
-         * Read the socket's InputStream and append to a StringBuffer
-         */
-        int c;
-        while ((c = isr.read()) != 13) {
-            instr.append((char) c);
-        }
+        
+        InputStream buffer = new BufferedInputStream(connection.getInputStream());
+        
+        ois = new ObjectInputStream(buffer);
 
-        return instr.toString();
+        try {
+            message = (Message) ois.readObject();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SocketComms.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return message;
 
     }
 
@@ -96,8 +104,8 @@ public class SocketComms implements Comms {
             /**
              * Close the socket connection.
              */
-            bos.close();
-            bis.close();
+            oos.close();
+            ois.close();
             connection.close();
         } catch (IOException ex) {
             Logger.getLogger(SocketComms.class.getName()).log(Level.SEVERE, null, ex);
@@ -111,7 +119,9 @@ public class SocketComms implements Comms {
             /**
              * Obtain an address object of the server
              */
-            address = InetAddress.getByName(host);
+            if (address == null) {
+                address = InetAddress.getByName(host);
+            }
             /**
              * Establish a socket connection
              */

@@ -20,22 +20,6 @@ public class SHA512Test {
     
     public SHA512Test() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of getHashedRandomSalt method, of class SHA512.

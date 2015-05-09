@@ -11,6 +11,8 @@ import Comms.SocketComms;
 import java.net.*;
 /* The java.io package contains the basics needed for IO operations. */
 import java.io.*;
+import message.Message;
+import message.StringMessage;
 
 /**
  * The SocketClient class is a simple example of a TCP/IP Socket Client.
@@ -43,10 +45,11 @@ public class Client {
                     + " at " + TimeStamp + (char) 13;
 
             System.out.println("Try sending message");
-            connection.sendMessage(process);
+            StringMessage message = new StringMessage(process);
+            connection.sendMessage(message);
 
             System.out.println("Retreive message");
-            String returned = connection.recieveMessage();
+            Message returned = connection.recieveMessage();
             
             System.out.println(returned);
             

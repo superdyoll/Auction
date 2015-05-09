@@ -5,9 +5,11 @@
  */
 package Server;
 
+import Comms.SocketComms;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import message.StringMessage;
 
 /**
  *
@@ -43,20 +45,12 @@ public class Server implements Runnable {
     @Override
     public void run() {
         try {
-            BufferedInputStream is = new BufferedInputStream(connection.getInputStream());
-            InputStreamReader isr = new InputStreamReader(is);
-            int character;
-            StringBuffer process = new StringBuffer();
-            while ((character = isr.read()) != 13) {
-                process.append((char) character);
-            }
-            System.out.println(process);
+            SocketComms comms = new SocketComms(connection);
+            System.out.println(comms.recieveMessage());
             TimeStamp = new java.util.Date().toString();
             String returnCode = "MultipleSocketServer repsonded at " + TimeStamp + (char) 13;
-            BufferedOutputStream os = new BufferedOutputStream(connection.getOutputStream());
-            OutputStreamWriter osw = new OutputStreamWriter(os, "US-ASCII");
-            osw.write(returnCode);
-            osw.flush();
+            StringMessage message = new StringMessage(returnCode);
+            comms.sendMessage(message);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
