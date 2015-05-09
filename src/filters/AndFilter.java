@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Filter;
+package filters;
 
-import Items.Item;
+import item.Item;
 import java.util.List;
 
 /**
  *
  * @author Lloyd
  */
-public class OrFilter implements Filter{
+public class AndFilter implements Filter{
 
     private Filter criteria;
     private Filter otherFilter;
 
-    public OrFilter(Filter criteria, Filter otherFilter) {
+    public AndFilter(Filter criteria, Filter otherFilter) {
         this.criteria = criteria;
         this.otherFilter = otherFilter;
     }
@@ -25,13 +25,6 @@ public class OrFilter implements Filter{
     @Override
     public List<Item> meetFilter(List<Item> items) {
         List<Item> firstFilterItems = criteria.meetFilter(items);
-        List<Item> otherFilterItems = otherFilter.meetFilter(items);
-
-        for (Item item : otherFilterItems) {
-            if (!firstFilterItems.contains(item)) {
-                firstFilterItems.add(item);
-            }
-        }
-        return firstFilterItems;
+        return otherFilter.meetFilter(firstFilterItems);
     }
 }

@@ -5,6 +5,7 @@
  */
 package Security;
 
+import security.SHA512;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

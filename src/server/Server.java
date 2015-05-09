@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Server;
+package server;
 
-import Comms.SocketComms;
+import comms.SocketComms;
 import java.net.*;
 import java.io.*;
-import java.util.*;
 import message.StringMessage;
 
 /**

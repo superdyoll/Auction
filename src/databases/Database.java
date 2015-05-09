@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Security;
+package databases;
+
+import java.sql.Connection;
 
 /**
  *
  * @author Lloyd
  */
-public interface Hash {
+public interface Database {
+       
+    public Connection getConnection();
     
-    public String getHashedRandomSalt();
-    
-    public String hash(String data);
-    
-    public String getHashedPassword(String password, String salt);
+    public void close();
     
 }

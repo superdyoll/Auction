@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Users;
+package users;
 
-import Database.*;
+import databases.SQLite;
+import databases.Database;
 import java.sql.Connection;
 
 /**

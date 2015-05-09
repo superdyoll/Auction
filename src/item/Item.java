@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Items;
+package item;
 
-import Bids.Bid;
-import Users.User;
+import bid.Bid;
+import users.User;
 import config.Config;
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,8 +1,8 @@
-package Client;
+package client;
 
 
-import Comms.Comms;
-import Comms.SocketComms;
+import comms.Comms;
+import comms.SocketComms;
 import java.io.*;
 import message.Message;
 import message.StringMessage;

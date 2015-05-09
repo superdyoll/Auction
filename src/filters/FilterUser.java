@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Filter;
+package filters;
 
-import Items.Item;
+import item.Item;
+import users.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +14,24 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class FilterKeyword extends FilterString{
+public class FilterUser implements Filter{
+    
+    User searchUser;
 
-    public FilterKeyword(String filter) {
-        super(filter);
+    public FilterUser(User searchUser) {
+        this.searchUser = searchUser;
     }
-
+    
+    public FilterUser(String username){
+        this.searchUser = new User(username);
+    }
+    
     @Override
     public List<Item> meetFilter(List<Item> items) {
         List<Item> keyItems = new ArrayList<>();
 
         for (Item item : keyItems) {
-            if (item.containsKeyword(filter)) {
+            if (item.getSeller().equals(searchUser)) {
                 keyItems.add(item);
             }
         }
