@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public abstract class Message<E> implements java.io.Serializable{
     //TODO implement encryption
-    //TODO make message abstract and make different message types
+    //TODO make different message types
     
     private int messageID;
 

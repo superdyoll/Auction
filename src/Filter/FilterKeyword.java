@@ -13,22 +13,22 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class FilterDescription extends FilterString {
+public class FilterKeyword extends FilterString{
 
-    public FilterDescription(String filter) {
+    public FilterKeyword(String filter) {
         super(filter);
     }
 
     @Override
     public List<Item> meetFilter(List<Item> items) {
-        List<Item> descrItems = new ArrayList<>();
+        List<Item> keyItems = new ArrayList<>();
 
-        for (Item item : descrItems) {
-            if (item.getDescription().equalsIgnoreCase(filter)) {
-                descrItems.add(item);
+        for (Item item : keyItems) {
+            if (item.containsKeyword(filter)) {
+                keyItems.add(item);
             }
         }
-        return descrItems;
+        return keyItems;
     }
-
+    
 }

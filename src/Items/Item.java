@@ -7,6 +7,7 @@ package Items;
 
 import Bids.Bid;
 import Users.User;
+import config.Config;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -19,16 +20,21 @@ public class Item {
 
     private String title;
     private String description;
-    private final List<String> keywords;
+    private List<String> keywords;
     private User seller;
-    private int reservePrice;
+    //TODO filters for variables below
+    private double reservePrice;
     private Calendar startTime;
     private Calendar closeTime;
     private List<Bid> allBids;
+    private boolean cancelled;
+    private boolean closed;
+    private Config config;
 
     public Item(String title, String description,
             User user, int reservePrice,
             Calendar startTime, Calendar closeTime) {
+        this.config = new Config();
         this.title = title;
         this.description = description;
         this.keywords = new ArrayList<>();
@@ -69,8 +75,15 @@ public class Item {
     /**
      * @return the keywords
      */
-    public List<String> getKeyword() {
+    public List<String> getKeywords() {
         return keywords;
+    }
+
+    /**
+     * @param keywords the keywords to set
+     */
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     /**
@@ -115,14 +128,14 @@ public class Item {
     /**
      * @return the reservePrice
      */
-    public int getReservePrice() {
+    public double getReservePrice() {
         return reservePrice;
     }
 
     /**
      * @param reservePrice the reservePrice to set
      */
-    public void setReservePrice(int reservePrice) {
+    public void setReservePrice(double reservePrice) {
         this.reservePrice = reservePrice;
     }
 
@@ -173,12 +186,16 @@ public class Item {
     }
 
     public boolean addBid(Bid bid) {
-        if (bid.compareTo(getHighestBid()) > 0) {
-            this.allBids.add(bid);
-            return true;
-        } else {
-            return false;
+        //TODO check against SPEC
+        if (!isCancelled() && !isClosed()) {
+            if (bid.getBidder().getPenaltyPoints() < config.MAX_PENALTY_POINTS) {
+                if (bid.compareTo(getHighestBid()) > 0) {
+                    return this.allBids.add(bid);
+                }
+            }
         }
+        return false;
+
     }
 
     public Bid getHighestBid() {
@@ -189,6 +206,34 @@ public class Item {
             }
         }
         return currentHighest;
+    }
+
+    /**
+     * @return the cancelled
+     */
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    /**
+     * @param cancelled the cancelled to set
+     */
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
+
+    /**
+     * @return the closed
+     */
+    public boolean isClosed() {
+        return closed;
+    }
+
+    /**
+     * @param closed the closed to set
+     */
+    public void setClosed(boolean closed) {
+        this.closed = closed;
     }
 
 }

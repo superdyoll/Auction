@@ -10,20 +10,43 @@ package Users;
  * @author Lloyd
  */
 public class User {
+
     private String familyName;
     private String personalName;
+    public String username;
     private String password;
     private String salt;
-    private int personalID;
-    
-    
-    public User (String personalName, String familyName,
-            String password, String salt, int personalID){
+    private int personalID = -1;
+    public int penaltyPoints;
+    //TODO implement penalty points properly
+
+    public User(String personalName, String familyName, String username,
+            String password, String salt, int personalID) {
         this.personalName = personalName;
         this.familyName = familyName;
+        this.username = username;
         this.password = password;
         this.salt = salt;
         this.personalID = personalID;
+    }
+
+    public User(String personalName, String familyName, String username,
+            String password, String salt) {
+        this.personalName = personalName;
+        this.familyName = familyName;
+        this.username = username;
+        this.password = password;
+        this.salt = salt;
+    }
+
+    public User(String personalName, String familyName, String username) {
+        this.personalName = personalName;
+        this.familyName = familyName;
+        this.username = username;
+    }
+
+    public User(String username) {
+        this.username = username;
     }
 
     /**
@@ -52,6 +75,20 @@ public class User {
      */
     public void setPersonalName(String personalName) {
         this.personalName = personalName;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -95,4 +132,32 @@ public class User {
     public void setPersonalID(int personalID) {
         this.personalID = personalID;
     }
+
+    /**
+     *
+     * @param otherUser
+     * @return
+     */
+    public boolean equals(User otherUser) {
+        if (username.equals(otherUser.getUsername())) {
+            return true;
+        } else {
+            return personalID == otherUser.getPersonalID();
+        }
+    }
+
+    /**
+     * @return the penaltyPoints
+     */
+    public int getPenaltyPoints() {
+        return penaltyPoints;
+    }
+
+    /**
+     * @param penaltyPoints the penaltyPoints to set
+     */
+    public void setPenaltyPoints(int penaltyPoints) {
+        this.penaltyPoints = penaltyPoints;
+    }
+
 }

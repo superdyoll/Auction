@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Filter;
-
-import Items.Item;
-import java.util.List;
+package config;
 
 /**
  *
  * @author Lloyd
  */
-public interface Filter {
-
-    public List<Item> meetFilter(List<Item> items);
+public class Config {
+    //TODO check this the correct way to configs
+    public int MAX_PENALTY_POINTS = 3;
 }
