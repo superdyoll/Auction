@@ -1,23 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Client;
-/*  The java.net package contains the basics needed for network operations. */
+
 
 import Comms.Comms;
 import Comms.SocketComms;
-import java.net.*;
-/* The java.io package contains the basics needed for IO operations. */
 import java.io.*;
 import message.Message;
 import message.StringMessage;
 
-/**
- * The SocketClient class is a simple example of a TCP/IP Socket Client.
- *
- */
 /**
  *
  * @author Lloyd
@@ -29,6 +18,7 @@ public class Client {
          * Define a host server
          */
         String host = "localhost";
+        
         /**
          * Define a port
          */

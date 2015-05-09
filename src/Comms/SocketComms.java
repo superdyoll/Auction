@@ -54,13 +54,11 @@ public class SocketComms implements Comms {
         /**
          * Instantiate a BufferedOutputStream object
          */
-        
         OutputStream bos = new BufferedOutputStream(connection.getOutputStream());
-        
+
         oos = new ObjectOutputStream(bos);
 
         //System.out.println("Buffered object set up");
-
         /**
          * Write across the socket connection and flush the buffer
          */
@@ -70,7 +68,7 @@ public class SocketComms implements Comms {
         //System.out.println("flushed");
         return true;
     }
-    
+
     @Override
     public boolean sendMessage(String message) throws IOException {
         StringMessage stringMessage = new StringMessage(message);
@@ -84,9 +82,9 @@ public class SocketComms implements Comms {
          * Instantiate a BufferedInputStream object for reading incoming socket
          * streams.
          */
-        
+
         InputStream buffer = new BufferedInputStream(connection.getInputStream());
-        
+
         ois = new ObjectInputStream(buffer);
 
         try {
@@ -113,6 +111,15 @@ public class SocketComms implements Comms {
         return true;
     }
 
+    /**
+     * Connect to the socket
+     *
+     * If you pass in a connection this will not need to be done unless the
+     * connection is closed at some point
+     *
+     * @return
+     * @throws IOException
+     */
     @Override
     public boolean connect() throws IOException {
         try {

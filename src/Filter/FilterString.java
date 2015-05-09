@@ -5,7 +5,6 @@
  */
 package Filter;
 
-
 import Items.Item;
 import java.util.List;
 
@@ -13,7 +12,15 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public interface Filter {   
-    //TODO make filters
-    public List<Item> meetFilter(List<Item> items);
+public abstract class FilterString implements Filter{
+
+    String filter;
+
+    public FilterString(String filter) {
+        this.filter = filter;
+    }
+    
+    @Override
+    public abstract List<Item> meetFilter(List<Item> items) ;
+    
 }

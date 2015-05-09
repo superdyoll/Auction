@@ -5,23 +5,38 @@
  */
 package Items;
 
+import Bids.Bid;
+import Users.User;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  *
  * @author Lloyd
  */
 public class Item {
-    
+
     private String title;
     private String description;
-    private String keyword;
-    private int userID;
+    private final List<String> keywords;
+    private User seller;
     private int reservePrice;
     private Calendar startTime;
     private Calendar closeTime;
-    private HashMap <Integer, Integer> currentBids;
+    private List<Bid> allBids;
+
+    public Item(String title, String description,
+            User user, int reservePrice,
+            Calendar startTime, Calendar closeTime) {
+        this.title = title;
+        this.description = description;
+        this.keywords = new ArrayList<>();
+        this.seller = user;
+        this.reservePrice = reservePrice;
+        this.startTime = startTime;
+        this.closeTime = closeTime;
+    }
 
     /**
      * @return the title
@@ -52,31 +67,49 @@ public class Item {
     }
 
     /**
-     * @return the keyword
+     * @return the keywords
      */
-    public String getKeyword() {
-        return keyword;
+    public List<String> getKeyword() {
+        return keywords;
     }
 
     /**
-     * @param keyword the keyword to set
+     * @param keyword the keywords to set
      */
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    public void addKeyword(String keyword) {
+        this.keywords.add(keyword);
+    }
+
+    /**
+     *
+     * @param keyword
+     */
+    public void removeKeyword(String keyword) {
+        this.keywords.remove(keyword);
+    }
+
+    /**
+     * Returns whether the item has a certain keyword
+     *
+     * @param keyword
+     * @return
+     */
+    public boolean containsKeyword(String keyword) {
+        return keywords.contains(keyword);
     }
 
     /**
      * @return the userID
      */
-    public int getUserID() {
-        return userID;
+    public User getSeller() {
+        return seller;
     }
 
     /**
-     * @param userID the userID to set
+     * @param user
      */
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setSeller(User user) {
+        this.seller = user;
     }
 
     /**
@@ -122,17 +155,40 @@ public class Item {
     }
 
     /**
-     * @return the currentBids
+     * @return the allBids
      */
-    public HashMap <Integer, Integer> getCurrentBids() {
-        return currentBids;
+    public List<Bid> getAllBids() {
+        return allBids;
     }
 
     /**
-     * @param currentBids the currentBids to set
+     * Add a new bid on the object
+     *
+     * @param user
+     * @param bid
      */
-    public void setCurrentBids(HashMap <Integer, Integer> currentBids) {
-        this.currentBids = currentBids;
+    public void addBid(User user, Double bid) {
+        Bid newBid = new Bid(user, bid);
+        addBid(newBid);
     }
-    
+
+    public boolean addBid(Bid bid) {
+        if (bid.compareTo(getHighestBid()) > 0) {
+            this.allBids.add(bid);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Bid getHighestBid() {
+        Bid currentHighest = null;
+        for (Bid thisBid : allBids) {
+            if (thisBid.compareTo(currentHighest) > 0) {
+                currentHighest = thisBid;
+            }
+        }
+        return currentHighest;
+    }
+
 }
