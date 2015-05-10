@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class Item {
 
+    //TODO Seperate item and things to do with auctions so that multiple auctions can have the same item
     private String title;
     private String description;
     private List<String> keywords;
@@ -187,9 +188,8 @@ public class Item {
     }
 
     public boolean addBid(Bid bid) {
-        //TODO check against SPEC
         if (!isCancelled() && !isClosed()) {
-            if (bid.getBidder().getPenaltyPoints() < config.MAX_PENALTY_POINTS) {
+            if (!bid.getBidder().equals(seller)) {
                 if (bid.compareTo(getHighestBid()) > 0) {
                     return this.allBids.add(bid);
                 }
