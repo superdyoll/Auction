@@ -6,3 +6,5 @@
 *.jpg
 /build/
 /dist/
+#Don't ignore our config file
+!config.properties
