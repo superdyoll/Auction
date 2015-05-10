@@ -22,7 +22,6 @@ public class Item {
     private String description;
     private List<String> keywords;
     private User seller;
-    //TODO filters for variables below
     private double reservePrice;
     private Calendar startTime;
     private Calendar closeTime;
