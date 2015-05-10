@@ -29,6 +29,8 @@ public class Item {
     private List<Bid> allBids;
     private boolean cancelled;
     private boolean closed;
+    
+    //Import Configuration File
     private Config config;
 
     public Item(String title, String description,
