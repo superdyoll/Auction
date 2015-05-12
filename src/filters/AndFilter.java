@@ -16,15 +16,22 @@ public class AndFilter implements Filter{
 
     private Filter criteria;
     private Filter otherFilter;
+    private String where;
 
     public AndFilter(Filter criteria, Filter otherFilter) {
         this.criteria = criteria;
         this.otherFilter = otherFilter;
+        where = criteria.getWhere() + " AND " + otherFilter.getWhere();
     }
 
     @Override
     public List<Auction> meetFilter(List<Auction> items) {
         List<Auction> firstFilterItems = criteria.meetFilter(items);
         return otherFilter.meetFilter(firstFilterItems);
+    }
+
+    @Override
+    public String getWhere() {
+        return where;
     }
 }

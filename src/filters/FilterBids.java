@@ -17,7 +17,13 @@ import java.util.List;
 public class FilterBids implements Filter{
     
     Bid searchBid;
+    String where;
 
+    private void setWhere(){
+        where = "MAX(Bid.amount) > " + searchBid.getBid() + " GROUP BY A_ID";
+    }
+   
+    
     /**Find all bids less than the search bid
      *
      * @param searchBid
@@ -44,6 +50,11 @@ public class FilterBids implements Filter{
             }
         }
         return titleItems;
+    }
+
+    @Override
+    public String getWhere() {
+        return where;
     }
     
 }
