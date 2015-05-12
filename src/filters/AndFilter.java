@@ -5,7 +5,7 @@
  */
 package filters;
 
-import item.Item;
+import auction.Auction;
 import java.util.List;
 
 /**
@@ -23,8 +23,8 @@ public class AndFilter implements Filter{
     }
 
     @Override
-    public List<Item> meetFilter(List<Item> items) {
-        List<Item> firstFilterItems = criteria.meetFilter(items);
+    public List<Auction> meetFilter(List<Auction> items) {
+        List<Auction> firstFilterItems = criteria.meetFilter(items);
         return otherFilter.meetFilter(firstFilterItems);
     }
 }

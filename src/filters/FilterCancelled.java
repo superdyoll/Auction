@@ -5,7 +5,7 @@
  */
 package filters;
 
-import item.Item;
+import auction.Auction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +20,10 @@ public class FilterCancelled extends FilterBoolean{
     }
 
     @Override
-    public List<Item> meetFilter(List<Item> items) {
-        List<Item> titleItems = new ArrayList<>();
+    public List<Auction> meetFilter(List<Auction> items) {
+        List<Auction> titleItems = new ArrayList<>();
 
-        for (Item item : titleItems) {
+        for (Auction item : titleItems) {
             if (item.isCancelled()) {
                 titleItems.add(item);
             }

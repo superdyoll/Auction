@@ -5,7 +5,7 @@
  */
 package filters;
 
-import item.Item;
+import auction.Auction;
 import users.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +27,10 @@ public class FilterUser implements Filter{
     }
     
     @Override
-    public List<Item> meetFilter(List<Item> items) {
-        List<Item> keyItems = new ArrayList<>();
+    public List<Auction> meetFilter(List<Auction> items) {
+        List<Auction> keyItems = new ArrayList<>();
 
-        for (Item item : keyItems) {
+        for (Auction item : keyItems) {
             if (item.getSeller().equals(searchUser)) {
                 keyItems.add(item);
             }

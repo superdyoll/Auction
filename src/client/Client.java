@@ -5,7 +5,7 @@ import comms.Comms;
 import comms.SocketComms;
 import java.io.*;
 import message.Message;
-import message.StringMessage;
+import message.MessageString;
 
 /**
  *
@@ -35,7 +35,7 @@ public class Client {
                     + " at " + TimeStamp + (char) 13;
 
             System.out.println("Try sending message");
-            StringMessage message = new StringMessage(process);
+            MessageString message = new MessageString(process);
             connection.sendMessage(message);
 
             System.out.println("Retreive message");

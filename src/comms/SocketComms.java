@@ -19,7 +19,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import message.StringMessage;
+import message.MessageString;
 
 /**
  *
@@ -71,7 +71,7 @@ public class SocketComms implements Comms {
 
     @Override
     public boolean sendMessage(String message) throws IOException {
-        StringMessage stringMessage = new StringMessage(message);
+        MessageString stringMessage = new MessageString(message);
         return sendMessage(stringMessage);
     }
 

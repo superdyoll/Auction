@@ -1,6 +1,6 @@
 package filters;
 
-import item.Item;
+import auction.Auction;
 import java.util.List;
 
 /**
@@ -11,5 +11,5 @@ public interface Filter {
 
     //Public interface for implementation of Filter Design Pattern
     
-    public List<Item> meetFilter(List<Item> items);
+    public List<Auction> meetFilter(List<Auction> items);
 }

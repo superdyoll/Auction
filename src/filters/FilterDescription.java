@@ -5,7 +5,7 @@
  */
 package filters;
 
-import item.Item;
+import auction.Auction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +20,10 @@ public class FilterDescription extends FilterString {
     }
 
     @Override
-    public List<Item> meetFilter(List<Item> items) {
-        List<Item> descrItems = new ArrayList<>();
+    public List<Auction> meetFilter(List<Auction> items) {
+        List<Auction> descrItems = new ArrayList<>();
 
-        for (Item item : descrItems) {
+        for (Auction item : descrItems) {
             if (item.getDescription().equalsIgnoreCase(filter)) {
                 descrItems.add(item);
             }

@@ -5,7 +5,7 @@
  */
 package filters;
 
-import item.Item;
+import auction.Auction;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -25,10 +25,10 @@ public class FilterCloseTime extends FilterCalendar{
     }
 
     @Override
-    public List<Item> meetFilter(List<Item> items) {
-        List<Item> keyItems = new ArrayList<>();
+    public List<Auction> meetFilter(List<Auction> items) {
+        List<Auction> keyItems = new ArrayList<>();
 
-        for (Item item : keyItems) {
+        for (Auction item : keyItems) {
             if (operator > 0) {
                 if (searchDate.after(item.getCloseTime())) {
                     keyItems.add(item);

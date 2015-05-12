@@ -5,7 +5,7 @@
  */
 package filters;
 
-import item.Item;
+import auction.Auction;
 import java.util.List;
 
 /**
@@ -21,6 +21,6 @@ public abstract class FilterString implements Filter{
     }
     
     @Override
-    public abstract List<Item> meetFilter(List<Item> items) ;
+    public abstract List<Auction> meetFilter(List<Auction> items);
     
 }

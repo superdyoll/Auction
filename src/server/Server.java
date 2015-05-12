@@ -8,7 +8,7 @@ package server;
 import comms.SocketComms;
 import java.net.*;
 import java.io.*;
-import message.StringMessage;
+import message.MessageString;
 
 /**
  *
@@ -48,7 +48,7 @@ public class Server implements Runnable {
             System.out.println(comms.recieveMessage());
             TimeStamp = new java.util.Date().toString();
             String returnCode = "MultipleSocketServer repsonded at " + TimeStamp + (char) 13;
-            StringMessage message = new StringMessage(returnCode);
+            MessageString message = new MessageString(returnCode);
             comms.sendMessage(message);
         } catch (Exception e) {
             System.out.println(e);

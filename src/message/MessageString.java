@@ -9,12 +9,12 @@ package message;
  *
  * @author Lloyd
  */
-public class StringMessage extends Message {
+public class MessageString extends Message {
 
     int messageID = 1;
     String stringMessage;
 
-    public StringMessage(String message) {
+    public MessageString(String message) {
         super(1);
         stringMessage = message;
     }

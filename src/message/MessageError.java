@@ -9,12 +9,12 @@ package message;
  *
  * @author Lloyd
  */
-public class ErrorMessage extends Message{
+public class MessageError extends Message{
 
     int messageID = 0;
     String errorMessage;
     
-    public ErrorMessage(String message) {
+    public MessageError(String message) {
         super(0);
         errorMessage = message;
     }

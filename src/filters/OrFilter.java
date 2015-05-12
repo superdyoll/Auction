@@ -5,7 +5,7 @@
  */
 package filters;
 
-import item.Item;
+import auction.Auction;
 import java.util.List;
 
 /**
@@ -23,11 +23,11 @@ public class OrFilter implements Filter{
     }
 
     @Override
-    public List<Item> meetFilter(List<Item> items) {
-        List<Item> firstFilterItems = criteria.meetFilter(items);
-        List<Item> otherFilterItems = otherFilter.meetFilter(items);
+    public List<Auction> meetFilter(List<Auction> items) {
+        List<Auction> firstFilterItems = criteria.meetFilter(items);
+        List<Auction> otherFilterItems = otherFilter.meetFilter(items);
 
-        for (Item item : otherFilterItems) {
+        for (Auction item : otherFilterItems) {
             if (!firstFilterItems.contains(item)) {
                 firstFilterItems.add(item);
             }
