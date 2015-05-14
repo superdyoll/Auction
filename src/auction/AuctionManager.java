@@ -5,10 +5,18 @@
  */
 package auction;
 
+import databases.*;
+import java.sql.Connection;
+
 /**
  *
  * @author Lloyd
  */
-public class AuctionManager {
+public final class AuctionManager {
+    
+    Database database = new SQLite();
+    
+    Connection databaseConnection = database.getConnection();
+    
     
 }

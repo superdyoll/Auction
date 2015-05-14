@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class SQLite implements Database{
     
-    String url = "jdbc:sqlite:auction.db";
+    String url = "jdbc:sqlite:database.db";
     Connection con = null;
 
     @Override
