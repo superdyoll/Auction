@@ -23,6 +23,12 @@ public class Server implements Runnable {
     public static void main(String[] args) {
         int port = 19999;
         int count = 0;
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ServerGUI().setVisible(true);
+            }
+        });
         try {
             ServerSocket socket1 = new ServerSocket(port);
             System.out.println("MultipleSocketServer Initialized");
