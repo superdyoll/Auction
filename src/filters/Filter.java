@@ -12,6 +12,4 @@ public interface Filter {
     //Public interface for implementation of Filter Design Pattern
     
     public List<Auction> meetFilter(List<Auction> items);
-    
-    public String getWhere();
 }

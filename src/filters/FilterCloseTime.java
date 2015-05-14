@@ -50,9 +50,4 @@ public class FilterCloseTime extends FilterCalendar{
         }
         return keyItems;
     }
-
-    @Override
-    public String getWhere() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

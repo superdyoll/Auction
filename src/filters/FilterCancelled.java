@@ -13,17 +13,11 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class FilterCancelled extends FilterBoolean{
+public class FilterCancelled extends FilterBoolean {
 
-    private String where;
-    
     public FilterCancelled(boolean filter) {
         super(filter);
-        if (filter){
-            where = "status = 2";
-        }else{
-            where = "status = 0";
-        }
+
     }
 
     @Override
@@ -38,9 +32,4 @@ public class FilterCancelled extends FilterBoolean{
         return titleItems;
     }
 
-    @Override
-    public String getWhere() {
-        return where;
-    }
-    
 }

@@ -16,12 +16,10 @@ public class OrFilter implements Filter{
 
     private Filter criteria;
     private Filter otherFilter;
-    private String where;
 
     public OrFilter(Filter criteria, Filter otherFilter) {
         this.criteria = criteria;
         this.otherFilter = otherFilter;
-        where = criteria.getWhere() + " OR " + otherFilter.getWhere();
     }
 
     @Override
@@ -35,10 +33,5 @@ public class OrFilter implements Filter{
             }
         }
         return firstFilterItems;
-    }
-
-    @Override
-    public String getWhere() {
-        return where;
     }
 }

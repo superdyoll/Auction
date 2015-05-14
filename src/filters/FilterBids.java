@@ -14,32 +14,28 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class FilterBids implements Filter{
-    
-    Bid searchBid;
-    String where;
+public class FilterBids implements Filter {
 
-    private void setWhere(){
-        where = "MAX(Bid.amount) > " + searchBid.getBid() + " GROUP BY A_ID";
-    }
-   
-    
-    /**Find all bids less than the search bid
+    Bid searchBid;
+
+    /**
+     * Find all bids less than the search bid
      *
      * @param searchBid
      */
     public FilterBids(Bid searchBid) {
         this.searchBid = searchBid;
     }
-    
-    /**Find all bids less than the search bid
+
+    /**
+     * Find all bids less than the search bid
      *
      * @param searchBid
      */
     public FilterBids(double searchBid) {
         this.searchBid = new Bid(searchBid);
     }
-    
+
     @Override
     public List<Auction> meetFilter(List<Auction> items) {
         List<Auction> titleItems = new ArrayList<>();
@@ -52,9 +48,4 @@ public class FilterBids implements Filter{
         return titleItems;
     }
 
-    @Override
-    public String getWhere() {
-        return where;
-    }
-    
 }
