@@ -15,8 +15,15 @@ import java.util.List;
  */
 public class FilterCancelled extends FilterBoolean{
 
+    private String where;
+    
     public FilterCancelled(boolean filter) {
         super(filter);
+        if (filter){
+            where = "status = 2";
+        }else{
+            where = "status = 0";
+        }
     }
 
     @Override
@@ -24,11 +31,16 @@ public class FilterCancelled extends FilterBoolean{
         List<Auction> titleItems = new ArrayList<>();
 
         for (Auction item : titleItems) {
-            if (item.isCancelled()) {
+            if (item.isCancelled() == filter) {
                 titleItems.add(item);
             }
         }
         return titleItems;
+    }
+
+    @Override
+    public String getWhere() {
+        return where;
     }
     
 }
