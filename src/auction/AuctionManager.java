@@ -7,6 +7,8 @@ package auction;
 
 import databases.*;
 import java.sql.Connection;
+import java.util.List;
+import users.User;
 
 /**
  *
@@ -18,5 +20,6 @@ public final class AuctionManager {
     
     Connection databaseConnection = database.getConnection();
     
+    List<User> users;
     
 }
