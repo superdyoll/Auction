@@ -3,6 +3,7 @@ MessageID, MessageType
 1,String
 2,JPanel
 3,User
+4,SessionID
 5,GetAuction
 6,MakeBid
 7,MakeAuction
