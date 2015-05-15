@@ -6,6 +6,7 @@
 package server;
 
 import comms.SocketComms;
+import java.awt.TrayIcon;
 import java.net.*;
 import java.io.*;
 import message.MessageString;
@@ -19,6 +20,8 @@ public class Server implements Runnable {
     private Socket connection;
     private String TimeStamp;
     private int ID;
+    private static ServerGUI theGUI;
+    private static ServerTrayIcon trayIcon;
 
     public static void main(String[] args) {
         int port = 19999;
@@ -26,7 +29,10 @@ public class Server implements Runnable {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ServerGUI().setVisible(true);
+                theGUI = new ServerGUI();
+                theGUI.setVisible(true);
+                trayIcon = new ServerTrayIcon(theGUI);
+                trayIcon.displayNotification("Server set up", TrayIcon.MessageType.INFO);
             }
         });
         try {
