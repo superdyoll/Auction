@@ -79,7 +79,7 @@ public class ServerTrayIcon {
 
     //Obtain the image URL
     protected static Image createImage(String path, String description) {
-        URL imageURL = TrayIconCreator.class.getResource(path);
+        URL imageURL = ServerTrayIcon.class.getResource(path);
 
         System.out.println(imageURL);
 

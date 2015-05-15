@@ -9,6 +9,8 @@ import comms.SocketComms;
 import java.awt.TrayIcon;
 import java.net.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import message.MessageString;
 
 /**
@@ -35,6 +37,11 @@ public class Server implements Runnable {
                 trayIcon.displayNotification("Server set up", TrayIcon.MessageType.INFO);
             }
         });
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             ServerSocket socket1 = new ServerSocket(port);
             System.out.println("MultipleSocketServer Initialized");
