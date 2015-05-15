@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Auction implements java.io.Serializable{
 
-    //TODO Seperate item and things to do with auctions so that multiple auctions can have the same item
+    private int auctionID;
     private Item item;
     private List<String> keywords;
     private User seller;
@@ -248,6 +248,10 @@ public class Auction implements java.io.Serializable{
      */
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public int getAuctionID() {
+        return auctionID;
     }
 
 }

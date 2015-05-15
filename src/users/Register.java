@@ -22,11 +22,6 @@ public class Register {
     Database db;
     Connection con;
 
-    public Register() {
-        this.db = new SQLite();
-        con = db.getConnection();
-    }
-
     public Register(Database db) {
         this.db = db;
         con = db.getConnection();
@@ -50,7 +45,7 @@ public class Register {
         try (PreparedStatement stmt = con.prepareStatement(prep_stmt)) {
             stmt.setString(1, userName);
             ResultSet rs = stmt.executeQuery();
-            
+
             if (rs.next()) {
                 // A user with this email address already exists
                 error_msg += "A user with this email address already exists.</p>";
@@ -66,7 +61,7 @@ public class Register {
             password = hasher.getHashedPassword(password, random_salt);
 
             // Insert the new user into the database 
-            PreparedStatement insert_stmt = con.prepareStatement("INSERT INTO members (username, email, password, salt, grav_email) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement insert_stmt = con.prepareStatement("INSERT INTO User (firstname, lastname, uname, password, salt) VALUES (?, ?, ?, ?, ?)");
 
             insert_stmt.setString(1, firstName);
             insert_stmt.setString(2, lastName);
