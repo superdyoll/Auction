@@ -11,7 +11,6 @@ package message;
  */
 public class MessageString extends Message {
 
-    int messageID = 1;
     String stringMessage;
 
     public MessageString(String message) {
@@ -35,7 +34,7 @@ public class MessageString extends Message {
 
     @Override
     public String toString() {
-        String returned = "ID: " + messageID + " Message: " + stringMessage;
+        String returned = "ID: " + getMessageID() + " Message: " + stringMessage;
         return returned;
     }
 
