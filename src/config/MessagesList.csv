@@ -5,6 +5,6 @@ MessageID, MessageType
 3,User
 4,Auction
 5,Bid
-6,Iten
+6,Item
 7,Filter
-8,ProvideFeedback
+8,Feedback
