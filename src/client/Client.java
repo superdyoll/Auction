@@ -16,6 +16,7 @@ import message.MessageString;
 public class Client {
 
     private Comms connection;
+    String sessionID= "blah";
 
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
@@ -49,11 +50,14 @@ public class Client {
     }
 
     public void sendMessage(Message message) throws IOException {
+        message.setSessionID(sessionID);
+        System.out.println(message);
         connection.sendMessage(message);
     }
 
     public void sendMessage(String message) throws IOException {
-        connection.sendMessage(message);
+        MessageString stringMessage = new MessageString(message);
+        sendMessage(stringMessage);
     }
 
     public Message recieveMessage() throws IOException {
@@ -100,6 +104,7 @@ public class Client {
             
             connection.connect();
             sendMessage("Hello");
+            System.out.println("Recieving");
             System.out.println(recieveMessage().toString());
             closeConnection();
         } catch (IOException f) {

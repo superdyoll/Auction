@@ -5,27 +5,23 @@
  */
 package server;
 
+import auction.AuctionManager;
 import client.ClientGUI;
-import comms.SocketComms;
 import java.awt.TrayIcon;
+import java.awt.TrayIcon.MessageType;
 import java.net.*;
-import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import message.Message;
-import message.MessageString;
 
 /**
  *
  * @author Lloyd
  */
-public class Server implements Runnable {
+public class Server {
 
-    private Socket connection;
-    private String TimeStamp;
-    private int ID;
     private static ServerGUI theGUI;
     private static ServerTrayIcon trayIcon;
+    private static AuctionManager auctions;
 
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
@@ -51,6 +47,12 @@ public class Server implements Runnable {
         }
         //</editor-fold>
 
+        Server server = new Server();
+        server.setUpComponents();
+
+    }
+
+    private void setUpComponents() {
         int port = 19999;
         int count = 0;
         /* Create and display the form */
@@ -60,6 +62,12 @@ public class Server implements Runnable {
                 theGUI.setVisible(true);
                 trayIcon = new ServerTrayIcon(theGUI);
                 trayIcon.displayNotification("Server set up", TrayIcon.MessageType.INFO);
+            }
+        });
+        /*Set up back end*/
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                //auctions = new AuctionManager();
             }
         });
         try {
@@ -72,7 +80,7 @@ public class Server implements Runnable {
             System.out.println("MultipleSocketServer Initialized");
             while (true) {
                 Socket connection = socket1.accept();
-                Runnable runnable = new Server(connection, ++count);
+                Runnable runnable = new ServerThread(connection, ++count, this);
                 Thread thread = new Thread(runnable);
                 thread.start();
             }
@@ -80,34 +88,8 @@ public class Server implements Runnable {
         }
     }
 
-    Server(Socket s, int i) {
-        this.connection = s;
-        this.ID = i;
-    }
-
-    @Override
-    public void run() {
-        try {
-            trayIcon.displayNotification("Recieved connection", TrayIcon.MessageType.INFO);
-            SocketComms comms = new SocketComms(connection);
-            Message message = comms.recieveMessage();
-            Message returnMessage = switchMessage(message);
-            comms.sendMessage(returnMessage);
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            try {
-                connection.close();
-            } catch (IOException e) {
-            }
-        }
-    }
-    
-    public Message switchMessage (Message message){
-        switch (message.getMessageID()){
-            case 0:
-                
-        }
+    public void displayNotification(String message, MessageType type) {
+        trayIcon.displayNotification(message, type);
     }
 
 }
