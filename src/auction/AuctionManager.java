@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,18 +32,18 @@ public final class AuctionManager {
 
     Connection databaseConnection = database.getConnection();
 
-    private List<User> users;
+    private HashMap<User, String> users;
 
     private List<Auction> auctions;
 
     private List<Item> items;
 
     public List<User> getUsers() {
-        return users;
+        return users.keySet();
     }
 
-    public User getUser(int index) {
-        return users.get(index);
+    public String getSessionID(User user) {
+        return users.get(user);
     }
 
     public void addUsers(List<User> users) {

@@ -12,6 +12,7 @@ import java.net.*;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import message.Message;
 import message.MessageString;
 
 /**
@@ -89,11 +90,9 @@ public class Server implements Runnable {
         try {
             trayIcon.displayNotification("Recieved connection", TrayIcon.MessageType.INFO);
             SocketComms comms = new SocketComms(connection);
-            System.out.println(comms.recieveMessage());
-            TimeStamp = new java.util.Date().toString();
-            String returnCode = "MultipleSocketServer repsonded at " + TimeStamp + (char) 13;
-            MessageString message = new MessageString(returnCode);
-            comms.sendMessage(message);
+            Message message = comms.recieveMessage();
+            Message returnMessage = switchMessage(message);
+            comms.sendMessage(returnMessage);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
@@ -101,6 +100,13 @@ public class Server implements Runnable {
                 connection.close();
             } catch (IOException e) {
             }
+        }
+    }
+    
+    public Message switchMessage (Message message){
+        switch (message.getMessageID()){
+            case 0:
+                
         }
     }
 
