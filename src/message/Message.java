@@ -11,16 +11,32 @@ import java.util.ArrayList;
  *
  * @author Lloyd
  */
-public abstract class Message<E> implements java.io.Serializable{
+public abstract class Message<E> implements java.io.Serializable {
     //TODO implement encryption
     //TODO make different message types
-    
+
     private int messageID;
+    private String sessionID;
 
     public Message(int messageID) {
         this.messageID = messageID;
     }
- 
+
+    /**
+     *
+     * @return the SessionID
+     */
+    public String getSessionID() {
+        return sessionID;
+    }
+
+    /**
+     *
+     * @param sessionID
+     */
+    public void setSessionID(String sessionID) {
+        this.sessionID = sessionID;
+    }
 
     /**
      * @return the messageID
@@ -37,9 +53,10 @@ public abstract class Message<E> implements java.io.Serializable{
     }
 
     public abstract Object getMessage();
-    
+
     public abstract void setMessage(Object message) throws Exception;
-    
+
     @Override
     public abstract String toString();
+
 }
