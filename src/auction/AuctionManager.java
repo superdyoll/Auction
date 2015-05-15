@@ -20,6 +20,26 @@ public final class AuctionManager {
     
     Connection databaseConnection = database.getConnection();
     
-    List<User> users;
+    private List<User> users;
+    
+    private List<Auction> auctions;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(List<Auction> auctions) {
+        this.auctions = auctions;
+    }
+    
+    
     
 }

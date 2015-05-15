@@ -3,7 +3,10 @@ package client;
 import comms.Comms;
 import comms.SocketComms;
 import java.io.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import message.Message;
+import message.MessageJPanel;
 import message.MessageString;
 
 /**
@@ -11,6 +14,8 @@ import message.MessageString;
  * @author Lloyd
  */
 public class Client {
+
+    private Comms connection;
 
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
@@ -35,7 +40,45 @@ public class Client {
             java.util.logging.Logger.getLogger(ClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        new Client().initComponents();
+    }
 
+    public void closeConnection() throws IOException {
+        System.out.println("Close");
+        connection.close();
+    }
+
+    public void sendMessage(Message message) throws IOException {
+        connection.sendMessage(message);
+    }
+
+    public void sendMessage(String message) throws IOException {
+        connection.sendMessage(message);
+    }
+
+    public Message recieveMessage() throws IOException {
+        return connection.recieveMessage();
+    }
+
+    public JPanel recieveJPanel() throws IOException {
+        Message message = connection.recieveMessage();
+        System.out.println(message);
+        if (message instanceof MessageJPanel) {
+            MessageJPanel returnPanel = (MessageJPanel) message;
+            return returnPanel.getMessage();
+        } else {
+            JLabel label = new JLabel(message.toString());
+            JPanel panel = new JPanel();
+            panel.add(label);
+            return panel;
+        }
+    }
+    
+    //public JPanel newAuction(){
+        
+    //}
+
+    public void initComponents() {
         /**
          * Define a host server
          */
@@ -47,38 +90,36 @@ public class Client {
         int port = 19999;
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TestGUI().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(new GUIThread(this));
 
         System.out.println("SocketClient initialized");
         try {
-            Comms connection = new SocketComms(port, host);
+            connection = new SocketComms(port, host);
             System.out.println("Try to connect");
+            
+            
             connection.connect();
-
-            String TimeStamp = new java.util.Date().toString();
-            String process = "Calling the Socket Server on " + host + " port " + port
-                    + " at " + TimeStamp + (char) 13;
-
-            System.out.println("Try sending message");
-            MessageString message = new MessageString(process);
-            connection.sendMessage(message);
-
-            System.out.println("Retreive message");
-            Message returned = connection.recieveMessage();
-
-            System.out.println(returned);
-
-            System.out.println("Close");
-            connection.close();
-
+            sendMessage("Hello");
+            System.out.println(recieveMessage().toString());
+            closeConnection();
         } catch (IOException f) {
             System.out.println("IOException: " + f);
         } catch (Exception g) {
             System.out.println("Exception: " + g);
+        }
+    }
+
+    private static class GUIThread extends Thread {
+
+        Client base;
+
+        public GUIThread(Client base) {
+            this.base = base;
+        }
+
+        @Override
+        public void run() {
+            new ClientGUI(base).setVisible(true);
         }
     }
 }

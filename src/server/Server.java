@@ -87,6 +87,7 @@ public class Server implements Runnable {
     @Override
     public void run() {
         try {
+            trayIcon.displayNotification("Recieved connection", TrayIcon.MessageType.INFO);
             SocketComms comms = new SocketComms(connection);
             System.out.println(comms.recieveMessage());
             TimeStamp = new java.util.Date().toString();
