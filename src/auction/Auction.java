@@ -44,6 +44,18 @@ public class Auction implements java.io.Serializable{
         this.startTime = startTime;
         this.closeTime = closeTime;
     }
+    
+    public Auction(Item item,
+            User user, int reservePrice,
+            Calendar startTime, Calendar closeTime) {
+        this.config = new Config();
+        this.item = item;
+        this.keywords = new ArrayList<>();
+        this.seller = user;
+        this.reservePrice = reservePrice;
+        this.startTime = startTime;
+        this.closeTime = closeTime;
+    }
 
     /**
      * @return the title
