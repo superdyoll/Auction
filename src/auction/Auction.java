@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class Auction {
+public class Auction implements java.io.Serializable{
 
     //TODO Seperate item and things to do with auctions so that multiple auctions can have the same item
     private Item item;

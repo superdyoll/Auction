@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Lloyd
  */
-public class Item {
+public class Item implements java.io.Serializable{
 
     private String title;
     private String description;

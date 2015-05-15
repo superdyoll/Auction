@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class FilterBids implements Filter {
+public class FilterBids extends Filter {
 
     Bid searchBid;
 

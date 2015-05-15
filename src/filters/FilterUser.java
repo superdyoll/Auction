@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class FilterUser implements Filter{
+public class FilterUser extends Filter{
     
     User searchUser;
 

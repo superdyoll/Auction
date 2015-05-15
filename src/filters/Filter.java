@@ -7,9 +7,9 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public interface Filter {
+public abstract class Filter implements java.io.Serializable{
 
     //Public interface for implementation of Filter Design Pattern
     
-    public List<Auction> meetFilter(List<Auction> items);
+    public abstract List<Auction> meetFilter(List<Auction> items);
 }

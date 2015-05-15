@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class FilterReservePrice implements Filter {
+public class FilterReservePrice extends Filter {
     
     double reservePrice;
     int operator;

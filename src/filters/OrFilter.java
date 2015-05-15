@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class OrFilter implements Filter{
+public class OrFilter extends Filter{
 
     private Filter criteria;
     private Filter otherFilter;

@@ -11,7 +11,7 @@ import users.User;
  *
  * @author Lloyd
  */
-public class Bid implements Comparable<Bid> {
+public class Bid implements Comparable<Bid>, java.io.Serializable {
 
     public User bidder;
     public Double bid;
@@ -24,8 +24,6 @@ public class Bid implements Comparable<Bid> {
     public Bid(Double bid) {
         this.bid = bid;
     }
-    
-    
 
     /**
      * @return the bidder
@@ -40,13 +38,15 @@ public class Bid implements Comparable<Bid> {
     public Double getBid() {
         return bid;
     }
+
     /**
      * Compare 2 bids
-     * 
+     *
      * @param anotherBid
-     * @return the bid - the value 0 if anotherBid is numerically equal to this Bid;
-     * a value less than 0 if this Bid is numerically less than anotherBid; 
-     * and a value greater than 0 if this Bid is numerically greater than anotherBid
+     * @return the bid - the value 0 if anotherBid is numerically equal to this
+     * Bid; a value less than 0 if this Bid is numerically less than anotherBid;
+     * and a value greater than 0 if this Bid is numerically greater than
+     * anotherBid
      */
     @Override
     public int compareTo(Bid anotherBid) {

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public abstract class FilterBoolean implements Filter{
+public abstract class FilterBoolean extends Filter{
     boolean filter;
 
     public FilterBoolean(boolean filter) {

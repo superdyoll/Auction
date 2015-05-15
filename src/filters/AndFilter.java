@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public class AndFilter implements Filter {
+public class AndFilter extends Filter {
 
     private Filter criteria;
     private Filter otherFilter;

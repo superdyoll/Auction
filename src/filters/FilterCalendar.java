@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public abstract class FilterCalendar implements Filter{
+public abstract class FilterCalendar extends Filter{
     Calendar searchDate;
     int operator;
 

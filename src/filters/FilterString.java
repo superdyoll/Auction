@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Lloyd
  */
-public abstract class FilterString implements Filter{
+public abstract class FilterString extends Filter{
 
     String filter;
 

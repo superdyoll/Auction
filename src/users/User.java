@@ -9,7 +9,7 @@ package users;
  *
  * @author Lloyd
  */
-public class User {
+public class User implements java.io.Serializable{
 
     private String familyName;
     private String personalName;
