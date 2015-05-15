@@ -3,10 +3,8 @@ MessageID, MessageType
 1,String
 2,JPanel
 3,User
-4,SessionID
-5,GetAuction
-6,MakeBid
-7,MakeAuction
-8,CancelAuction
-9,FilterAuctions
-10,ProvideFeedback
+4,Auction
+5,Bid
+6,Iten
+7,Filter
+8,ProvideFeedback
