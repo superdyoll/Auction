@@ -5,12 +5,14 @@
  */
 package client;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import message.MessageString;
 
 /**
@@ -178,7 +180,9 @@ public class ClientGUI extends JFrame {
         
         //javax.swing.GroupLayout pnlOutputLayout = new javax.swing.GroupLayout(pnlOutput);
         pnlOutput.setLayout(new FlowLayout());
-        pnlOutput.setSize(621,this.getHeight());
+        Dimension newDims = new Dimension(621, this.getHeight());
+        pnlOutput.setSize(newDims);
+        pnlOutput.setPreferredSize(newDims);
        /*pnlOutputLayout.setHorizontalGroup(
                 pnlOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGap(0, 621, Short.MAX_VALUE)
@@ -263,4 +267,13 @@ public class ClientGUI extends JFrame {
     private javax.swing.JTextField txtMin;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration   
+
+    void setOutput(JPanel panel) {
+        System.out.println("Setting Output");
+        pnlOutput.removeAll();
+        pnlOutput.add(panel);
+        this.revalidate();
+        this.repaint();
+        pnlOutput.repaint();
+    }
 }

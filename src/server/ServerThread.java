@@ -10,7 +10,8 @@ import java.awt.TrayIcon;
 import java.io.IOException;
 import java.net.Socket;
 import message.Message;
-import message.MessageString;
+import message.MessageJPanel;
+import panel.PanelAuctions;
 
 /**
  *
@@ -49,11 +50,16 @@ public class ServerThread implements Runnable {
     }
 
     public Message switchMessage(Message message) {
+        Message messageReturn = null;
         switch (message.getMessageID()) {
-            case 0:
+            case 1:
+                messageReturn = new MessageJPanel(new PanelAuctions());
                 break;
+            default:
+                messageReturn = message;
+
         }
-        return message;
+        return messageReturn;
     }
 
 }

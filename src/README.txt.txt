@@ -1,4 +1,3 @@
-# Auction
 =Parts Of the Spec Met:=
 
 ==Part One (Users)==

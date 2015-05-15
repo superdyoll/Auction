@@ -5,10 +5,33 @@
  */
 package message;
 
+import auction.Auction;
+
 /**
  *
  * @author Lloyd
  */
-public class MessageAuction {
+public class MessageAuction extends Message{
+
+    Auction auction;
+    
+    public MessageAuction() {
+        super(4);
+    }
+
+    @Override
+    public Auction getMessage() {
+        return auction;
+    }
+
+    @Override
+    public void setMessage(Object message) throws Exception {
+        auction = (Auction) message;
+    }
+
+    @Override
+    public String toString() {
+        return auction.toString();
+    }
     
 }

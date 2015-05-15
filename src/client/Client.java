@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import message.Message;
 import message.MessageJPanel;
 import message.MessageString;
+import panel.PanelAuctions;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Client {
 
     private Comms connection;
     String sessionID= "blah";
+    static ClientGUI gui;
 
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
@@ -101,11 +103,12 @@ public class Client {
             connection = new SocketComms(port, host);
             System.out.println("Try to connect");
             
-            
+            Thread.sleep(500);
             connection.connect();
             sendMessage("Hello");
             System.out.println("Recieving");
-            System.out.println(recieveMessage().toString());
+            JPanel panel = new PanelAuctions();
+            gui.setOutput(panel);
             closeConnection();
         } catch (IOException f) {
             System.out.println("IOException: " + f);
@@ -114,7 +117,7 @@ public class Client {
         }
     }
 
-    private static class GUIThread extends Thread {
+    private class GUIThread extends Thread {
 
         Client base;
 
@@ -124,7 +127,8 @@ public class Client {
 
         @Override
         public void run() {
-            new ClientGUI(base).setVisible(true);
+            gui = new ClientGUI(base);
+            gui.setVisible(true);
         }
     }
 }

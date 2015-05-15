@@ -102,8 +102,12 @@ public class SocketComms implements Comms {
             /**
              * Close the socket connection.
              */
-            oos.close();
-            ois.close();
+            if (oos != null) {
+                oos.close();
+            }
+            if (ois != null) {
+                ois.close();
+            }
             connection.close();
         } catch (IOException ex) {
             Logger.getLogger(SocketComms.class.getName()).log(Level.SEVERE, null, ex);
