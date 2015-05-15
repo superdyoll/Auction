@@ -2,12 +2,10 @@ MessageID, MessageType
 0,Error
 1,String
 2,JPanel
-3,Login
-4,LogOut
+3,User
 5,GetAuction
 6,MakeBid
 7,MakeAuction
 8,CancelAuction
 9,FilterAuctions
-10,GetUser
-11,ProvideFeedback
+10,ProvideFeedback
